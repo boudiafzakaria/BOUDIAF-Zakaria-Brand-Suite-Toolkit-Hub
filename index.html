@@ -1,0 +1,2399 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lotus Brand Toolkit Hub</title>
+    <!-- Embedded Custom Fonts -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+      /* GLOBAL RESET & THEMING */
+      :root {
+        --font-sans: "Rajdhani", ui-sans-serif, system-ui, -apple-system, sans-serif;
+        --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+      }
+      body, html {
+        background-color: #0d0d0d;
+        color: #cccccc;
+        font-family: var(--font-sans);
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      *, *:before, *:after {
+        box-sizing: inherit;
+      }
+
+      /* CUSTOM SCROLLBARS */
+      .custom-scrollbar::-webkit-scrollbar {
+        height: 6px;
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 3px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      /* UTILITIES */
+      .flex-1 { flex: 1; }
+      .w-full { width: 100%; }
+      .text-white { color: #ffffff; }
+
+      /* HEADER & NAVIGATION */
+      header {
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        background: rgba(18, 18, 18, 0.95);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        padding: 16px 24px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+      @media (max-width: 640px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
+      }
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo-icon-bg {
+        padding: 8px;
+        background: linear-gradient(135deg, #ED1C24, #009464);
+        border-radius: 8px;
+        border: 1px solid rgba(255,255,255,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .logo-title-container h1 {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        color: #ffffff;
+        text-transform: uppercase;
+        margin: 0;
+      }
+      .logo-title-container p {
+        font-size: 11px;
+        color: #555555;
+        font-family: var(--font-mono);
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        margin: 2px 0 0 0;
+      }
+
+      .header-status-group {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+      }
+      .status-agent {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 4px;
+        padding: 4px 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+      }
+      .status-dot {
+        width: 6px;
+        height: 6px;
+        background-color: #10b981;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #10b981;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(1.1); }
+      }
+      .status-time {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 4px;
+        padding: 4px 10px;
+        color: #888888;
+      }
+      .status-time span {
+        color: #cccccc;
+        font-weight: 600;
+      }
+
+      /* MAIN CONTAINER */
+      main {
+        flex: 1;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        max-width: 1650px;
+        margin: 0 auto;
+        width: 100%;
+      }
+      @media (min-width: 768px) {
+        main {
+          padding: 32px;
+        }
+      }
+
+      /* UPPER BANNER HERO SCREEN */
+      .upper-banner {
+        background: #121212;
+        border: 1px solid rgba(255,255,255,0.05);
+        border-radius: 12px;
+        padding: 24px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+      }
+      @media (max-width: 1024px) {
+        .upper-banner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+      .upper-banner-left {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .upper-banner-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .upper-banner-desc {
+        font-size: 14px;
+        color: #888888;
+        line-height: 1.6;
+        margin: 0;
+        max-width: 800px;
+      }
+      .upper-banner-guide {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 8px;
+        padding: 12px 16px;
+        font-size: 12px;
+        font-family: var(--font-mono);
+        color: #aaaeae;
+        max-width: 380px;
+        flex-shrink: 0;
+      }
+      .guide-header {
+        font-weight: 600;
+        color: #ffffff;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* PANEL DESIGNS & SYSTEM GRID */
+      .panels-container {
+        overflow-x: auto;
+        padding-bottom: 16px;
+        display: flex;
+        gap: 24px;
+        align-items: start;
+        justify-content: space-between;
+      }
+      @media (max-width: 1220px) {
+        .panels-container {
+          justify-content: flex-start;
+        }
+      }
+
+      .portal-column {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        width: 380px;
+        flex-shrink: 0;
+      }
+      .portal-column-header {
+        border: 1px solid rgba(255,255,255,0.05);
+        background: #121212;
+        padding: 12px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
+      }
+      .portal-tag {
+        font-size: 11px;
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        font-weight: 700;
+      }
+      .portal-name {
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        color: #ffffff;
+        text-transform: uppercase;
+        margin: 0;
+      }
+      .portal-bar {
+        height: 2px;
+        width: 48px;
+        margin: 4px auto 0 auto;
+        border-radius: 99px;
+      }
+
+      /* SCOPED OOREDOO PANEL STYLES */
+      #ooredoo-panel {
+        --red: #ED1C24;
+        --red-dark: #c41019;
+        --red-glow: rgba(237, 28, 36, 0.18);
+        --bg: #1a1a1a;
+        --bg2: #222222;
+        --bg3: #2d2d2d;
+        --bg4: #383838;
+        --border: rgba(255,255,255,0.09);
+        --border-red: rgba(237, 28, 36, 0.35);
+        --text: #cccccc;
+        --text2: #888888;
+        --text3: #555555;
+        --font: 'Rajdhani', sans-serif;
+        --mono: 'IBM Plex Mono', monospace;
+        color: var(--text);
+        font-family: var(--font);
+        font-size: 15px;
+      }
+      #ooredoo-panel .panel {
+        width: 380px;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-top: 2px solid var(--red);
+        border-radius: 6px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      @keyframes blink-ooredoo {
+        0%, 100% { opacity: 1; box-shadow: 0 0 5px 2px rgba(237, 28, 36, 0.6); }
+        50% { opacity: 0.25; box-shadow: none; }
+      }
+      #ooredoo-panel .blink-dot {
+        width: 10px;
+        height: 10px;
+        background: #ED1C24;
+        border-radius: 50%;
+        flex-shrink: 0;
+        animation: blink-ooredoo 1.2s ease-in-out infinite;
+      }
+      #ooredoo-panel .panel-header {
+        padding: 14px 18px 12px;
+        background: var(--bg3);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      #ooredoo-panel .panel-title {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text);
+        margin: 0;
+      }
+      #ooredoo-panel .panel-sub {
+        font-size: 11px;
+        color: var(--text3);
+        letter-spacing: 0.04em;
+        font-family: var(--mono);
+        margin-top: 1px;
+      }
+      #ooredoo-panel .panel-body {
+        padding: 16px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      #ooredoo-panel .section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      #ooredoo-panel .section-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text3);
+        font-family: var(--mono);
+        padding-bottom: 4px;
+        border-bottom: 1px solid var(--border);
+      }
+      #ooredoo-panel label {
+        font-size: 12px;
+        color: var(--text2);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+        display: block;
+      }
+      #ooredoo-panel input[type="text"],
+      #ooredoo-panel select {
+        width: 100%;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        color: var(--text);
+        font-family: var(--font);
+        font-size: 14px;
+        font-weight: 500;
+        padding: 7px 10px;
+        outline: none;
+        transition: border-color 0.15s;
+        appearance: none;
+        -webkit-appearance: none;
+      }
+      #ooredoo-panel input[type="text"]::placeholder { color: var(--text3); }
+      #ooredoo-panel input[type="text"]:focus,
+      #ooredoo-panel select:focus {
+        border-color: var(--red);
+        box-shadow: 0 0 0 2px var(--red-glow);
+      }
+      #ooredoo-panel .select-wrap { position: relative; }
+      #ooredoo-panel .select-wrap::after {
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0; height: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 5px solid var(--text2);
+        pointer-events: none;
+      }
+      #ooredoo-panel select option { background: var(--bg3); }
+      #ooredoo-panel .form-row { display: flex; gap: 10px; }
+      #ooredoo-panel .form-row .form-field { flex: 1; }
+      #ooredoo-panel .form-field { display: flex; flex-direction: column; gap: 4px; }
+      #ooredoo-panel .divider {
+        height: 1px;
+        background: var(--border);
+        margin: 2px 0;
+      }
+      #ooredoo-panel .info-bar {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      #ooredoo-panel .info-entries {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      #ooredoo-panel .info-entry {
+        font-size: 11px;
+        font-family: var(--mono);
+        color: var(--text2);
+      }
+      #ooredoo-panel .info-entry span { color: var(--text); }
+      #ooredoo-panel .btn {
+        font-family: var(--font);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 7px 14px;
+        border-radius: 4px;
+        border: 1px solid var(--border);
+        cursor: pointer;
+        transition: all 0.15s;
+        background: var(--bg3);
+        color: var(--text2);
+        white-space: nowrap;
+      }
+      #ooredoo-panel .btn:hover {
+        background: var(--bg4);
+        color: var(--text);
+        border-color: rgba(255,255,255,0.18);
+      }
+      #ooredoo-panel .btn:active { transform: scale(0.97); }
+      #ooredoo-panel .btn-primary {
+        background: var(--red);
+        color: #fff;
+        border-color: var(--red-dark);
+        font-size: 14px;
+        padding: 10px 14px;
+        width: 100%;
+        letter-spacing: 0.1em;
+      }
+      #ooredoo-panel .btn-primary:hover {
+        background: var(--red-dark);
+        color: #fff;
+        border-color: var(--red-dark);
+      }
+      #ooredoo-panel .btn-primary::before {
+        content: '▶ ';
+        font-size: 10px;
+        opacity: 0.8;
+      }
+      #ooredoo-panel .btn-preset {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 6px 10px;
+        width: 100%;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--text2);
+      }
+      #ooredoo-panel .btn-preset::before {
+        content: '';
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--red);
+        flex-shrink: 0;
+      }
+      #ooredoo-panel .btn-preset:hover { color: var(--text); }
+      #ooredoo-panel .tabs {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      #ooredoo-panel .tab-nav {
+        display: flex;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      #ooredoo-panel .tab-btn {
+        font-family: var(--font);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--text3);
+        padding: 8px 13px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.15s;
+        white-space: nowrap;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+      }
+      #ooredoo-panel .tab-btn:hover { color: var(--text2); }
+      #ooredoo-panel .tab-btn.active {
+        color: var(--red);
+        border-bottom-color: var(--red);
+        background: var(--bg2);
+      }
+      #ooredoo-panel .tab-content { display: none; padding: 12px; background: var(--bg2); }
+      #ooredoo-panel .tab-content.active { display: flex; flex-direction: column; gap: 6px; }
+      #ooredoo-panel .presets-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      #ooredoo-panel .preset-group-label {
+        font-size: 10px;
+        font-family: var(--mono);
+        color: var(--text3);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 6px;
+        margin-bottom: 2px;
+      }
+      #ooredoo-panel .info-box {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-left: 2px solid var(--red);
+        border-radius: 0 4px 4px 0;
+        padding: 10px 12px;
+        font-size: 12px;
+        color: var(--text2);
+        font-family: var(--mono);
+        line-height: 1.7;
+      }
+      #ooredoo-panel .info-box span {
+        color: var(--red);
+        margin-right: 4px;
+      }
+      #ooredoo-panel .badge {
+        font-size: 10px;
+        font-family: var(--mono);
+        font-weight: 500;
+        color: var(--red);
+        background: var(--red-glow);
+        border: 1px solid var(--border-red);
+        border-radius: 3px;
+        padding: 1px 6px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      #ooredoo-panel .watermark {
+        text-align: center;
+        padding: 10px;
+        font-size: 10px;
+        font-family: var(--mono);
+        color: var(--text3);
+        border-top: 1px solid var(--border);
+        letter-spacing: 0.06em;
+      }
+
+      /* SCOPED SGA PANEL STYLES */
+      #sga-panel {
+        --red: #E30613;
+        --red-dark: #b80510;
+        --red-glow: rgba(227, 6, 19, 0.18);
+        --bg:  #1a1a1a;
+        --bg2: #222222;
+        --bg3: #2d2d2d;
+        --bg4: #383838;
+        --border: rgba(255,255,255,0.09);
+        --border-red: rgba(227, 6, 19, 0.35);
+        --text:  #cccccc;
+        --text2: #888888;
+        --text3: #555555;
+        --font: 'Rajdhani', sans-serif;
+        --mono: 'IBM Plex Mono', monospace;
+        color: var(--text);
+        font-family: var(--font);
+        font-size: 15px;
+      }
+      #sga-panel .panel {
+        width: 380px;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-top: 2px solid var(--red);
+        border-radius: 6px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      #sga-panel .panel-header {
+        padding: 14px 18px 12px;
+        background: var(--bg3);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      @keyframes blink-sga {
+        0%, 100% { opacity: 1; box-shadow: 0 0 5px 2px rgba(227,6,19,0.5); }
+        50%       { opacity: 0.2; box-shadow: none; }
+      }
+      #sga-panel .blink-dot {
+        width: 10px; height: 10px;
+        background: var(--red);
+        border-radius: 50%;
+        flex-shrink: 0;
+        animation: blink-sga 1.2s ease-in-out infinite;
+      }
+      #sga-panel .panel-title {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text);
+        line-height: 1.25;
+        margin: 0;
+      }
+      #sga-panel .panel-sub {
+        font-size: 11px;
+        color: var(--text3);
+        letter-spacing: 0.04em;
+        font-family: var(--mono);
+        margin-top: 2px;
+      }
+      #sga-panel .badge {
+        font-size: 10px;
+        font-family: var(--mono);
+        font-weight: 500;
+        color: var(--red);
+        background: var(--red-glow);
+        border: 1px solid var(--border-red);
+        border-radius: 3px;
+        padding: 1px 6px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      #sga-panel .panel-body {
+        padding: 16px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      #sga-panel .section { display: flex; flex-direction: column; gap: 8px; }
+      #sga-panel .section-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text3);
+        font-family: var(--mono);
+        padding-bottom: 4px;
+        border-bottom: 1px solid var(--border);
+      }
+      #sga-panel label {
+        font-size: 11px;
+        color: var(--text2);
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 3px;
+        display: block;
+      }
+      #sga-panel input[type="text"], 
+      #sga-panel select {
+        width: 100%;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        color: var(--text);
+        font-family: var(--font);
+        font-size: 14px;
+        font-weight: 500;
+        padding: 7px 10px;
+        outline: none;
+        transition: border-color 0.15s, box-shadow 0.15s;
+        appearance: none;
+        -webkit-appearance: none;
+      }
+      #sga-panel input[type="text"]::placeholder { color: var(--text3); }
+      #sga-panel input[type="text"]:focus, 
+      #sga-panel select:focus {
+        border-color: var(--red);
+        box-shadow: 0 0 0 2px var(--red-glow);
+      }
+      #sga-panel .select-wrap { position: relative; }
+      #sga-panel .select-wrap::after {
+        content: '';
+        position: absolute; right: 10px; top: 50%;
+        transform: translateY(-50%);
+        width: 0; height: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 5px solid var(--text2);
+        pointer-events: none;
+      }
+      #sga-panel select option { background: var(--bg3); }
+      #sga-panel .form-row { display: flex; gap: 10px; }
+      #sga-panel .form-field { display: flex; flex-direction: column; gap: 4px; }
+      #sga-panel .divider { height: 1px; background: var(--border); }
+      #sga-panel .btn {
+        font-family: var(--font);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 7px 14px;
+        border-radius: 4px;
+        border: 1px solid var(--border);
+        cursor: pointer;
+        transition: all 0.15s;
+        background: var(--bg3);
+        color: var(--text2);
+        white-space: nowrap;
+      }
+      #sga-panel .btn:hover { background: var(--bg4); color: var(--text); border-color: rgba(255,255,255,0.18); }
+      #sga-panel .btn:active { transform: scale(0.97); }
+      #sga-panel .btn-primary {
+        background: var(--red);
+        color: #fff;
+        border-color: var(--red-dark);
+        font-size: 14px;
+        padding: 10px 14px;
+        width: 100%;
+        letter-spacing: 0.1em;
+      }
+      #sga-panel .btn-primary:hover { background: var(--red-dark); color: #fff; border-color: var(--red-dark); }
+      #sga-panel .btn-primary::before { content: '▶ '; font-size: 10px; opacity: 0.8; }
+      #sga-panel .btn-preset {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 6px 10px;
+        width: 100%;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: var(--text2);
+        letter-spacing: 0.04em;
+      }
+      #sga-panel .btn-preset::before {
+        content: '';
+        width: 3px; height: 3px;
+        border-radius: 50%;
+        background: var(--red);
+        flex-shrink: 0;
+      }
+      #sga-panel .btn-preset:hover { color: var(--text); }
+      #sga-panel .selector-block { display: flex; flex-direction: column; gap: 10px; }
+      #sga-panel .settings-area {
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        background: var(--bg);
+        overflow: hidden;
+      }
+      #sga-panel .settings-inner {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        padding: 10px;
+      }
+      #sga-panel .settings-inner.active { display: flex; }
+      #sga-panel .settings-category {
+        font-size: 10px;
+        font-family: var(--mono);
+        color: var(--text3);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 6px 10px 3px;
+        border-top: 1px solid var(--border);
+        margin-top: 2px;
+      }
+      #sga-panel .settings-category:first-child { border-top: none; padding-top: 2px; margin-top: 0; }
+      #sga-panel .guide-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+      #sga-panel .guide-card {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 10px 8px 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: border-color 0.15s, background 0.15s;
+      }
+      #sga-panel .guide-card:hover {
+        border-color: var(--border-red);
+        background: var(--bg3);
+      }
+      #sga-panel .guide-card:hover .guide-frame { border-color: var(--red); }
+      #sga-panel .guide-preview {
+        width: 100%;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #sga-panel .guide-frame {
+        border: 1.5px solid var(--text3);
+        border-radius: 2px;
+        background: var(--bg3);
+        transition: border-color 0.15s;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #sga-panel .guide-frame::after {
+        content: '';
+        position: absolute;
+        inset: 3px;
+        border: 1px dashed rgba(255,255,255,0.06);
+        border-radius: 1px;
+      }
+      #sga-panel .guide-name {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text2);
+        text-align: center;
+        line-height: 1.2;
+      }
+      #sga-panel .guide-dims {
+        font-size: 9px;
+        font-family: var(--mono);
+        color: var(--text3);
+        text-align: center;
+        margin-top: 1px;
+      }
+      #sga-panel .info-bar {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      #sga-panel .info-entries { display: flex; flex-direction: column; gap: 2px; }
+      #sga-panel .info-entry { font-size: 11px; font-family: var(--mono); color: var(--text2); }
+      #sga-panel .info-entry span { color: var(--text); }
+      #sga-panel .watermark {
+        text-align: center;
+        padding: 10px;
+        font-size: 10px;
+        font-family: var(--mono);
+        color: var(--text3);
+        border-top: 1px solid var(--border);
+        letter-spacing: 0.06em;
+      }
+
+      /* SCOPED BNP PANEL STYLES */
+      #bnp-panel {
+        --green: #009464;
+        --green-dark: #006847;
+        --green-glow: rgba(0, 148, 100, 0.18);
+        --bg:  #1a1a1a;
+        --bg2: #222222;
+        --bg3: #2d2d2d;
+        --bg4: #383838;
+        --border: rgba(255,255,255,0.09);
+        --border-green: rgba(0, 148, 100, 0.35);
+        --text:  #cccccc;
+        --text2: #888888;
+        --text3: #555555;
+        --font: 'Rajdhani', sans-serif;
+        --mono: 'IBM Plex Mono', monospace;
+        color: var(--text);
+        font-family: var(--font);
+        font-size: 15px;
+      }
+      #bnp-panel .panel {
+        width: 380px;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-top: 2px solid var(--green);
+        border-radius: 6px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      #bnp-panel .panel-header {
+        padding: 14px 18px 12px;
+        background: var(--bg3);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      @keyframes blink-bnp {
+        0%, 100% { opacity: 1; box-shadow: 0 0 5px 2px rgba(0,148,100,0.55); }
+        50%       { opacity: 0.2; box-shadow: none; }
+      }
+      #bnp-panel .blink-dot {
+        width: 10px; height: 10px;
+        background: var(--green);
+        border-radius: 50%;
+        flex-shrink: 0;
+        animation: blink-bnp 1.2s ease-in-out infinite;
+      }
+      #bnp-panel .panel-title {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text);
+        line-height: 1.25;
+        margin: 0;
+      }
+      #bnp-panel .panel-sub {
+        font-size: 11px;
+        color: var(--text3);
+        letter-spacing: 0.04em;
+        font-family: var(--mono);
+        margin-top: 2px;
+      }
+      #bnp-panel .badge {
+        font-size: 10px;
+        font-family: var(--mono);
+        font-weight: 500;
+        color: var(--green);
+        background: var(--green-glow);
+        border: 1px solid var(--border-green);
+        border-radius: 3px;
+        padding: 1px 6px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      #bnp-panel .panel-body {
+        padding: 16px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      #bnp-panel .section { display: flex; flex-direction: column; gap: 8px; }
+      #bnp-panel .section-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text3);
+        font-family: var(--mono);
+        padding-bottom: 4px;
+        border-bottom: 1px solid var(--border);
+      }
+      #bnp-panel label {
+        font-size: 11px;
+        color: var(--text2);
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 3px;
+        display: block;
+      }
+      #bnp-panel input[type="text"], 
+      #bnp-panel select {
+        width: 100%;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        color: var(--text);
+        font-family: var(--font);
+        font-size: 14px;
+        font-weight: 500;
+        padding: 7px 10px;
+        outline: none;
+        transition: border-color 0.15s, box-shadow 0.15s;
+        appearance: none;
+        -webkit-appearance: none;
+      }
+      #bnp-panel input[type="text"]::placeholder { color: var(--text3); }
+      #bnp-panel input[type="text"]:focus, 
+      #bnp-panel select:focus {
+        border-color: var(--green);
+        box-shadow: 0 0 0 2px var(--green-glow);
+      }
+      #bnp-panel .select-wrap { position: relative; }
+      #bnp-panel .select-wrap::after {
+        content: '';
+        position: absolute; right: 10px; top: 50%;
+        transform: translateY(-50%);
+        width: 0; height: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 5px solid var(--text2);
+        pointer-events: none;
+      }
+      #bnp-panel select option { background: var(--bg3); }
+      #bnp-panel .form-row { display: flex; gap: 10px; }
+      #bnp-panel .form-field { display: flex; flex-direction: column; gap: 4px; }
+      #bnp-panel .divider { height: 1px; background: var(--border); }
+      #bnp-panel .btn {
+        font-family: var(--font);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 7px 14px;
+        border-radius: 4px;
+        border: 1px solid var(--border);
+        cursor: pointer;
+        transition: all 0.15s;
+        background: var(--bg3);
+        color: var(--text2);
+        white-space: nowrap;
+      }
+      #bnp-panel .btn:hover { background: var(--bg4); color: var(--text); border-color: rgba(255,255,255,0.18); }
+      #bnp-panel .btn:active { transform: scale(0.97); }
+      #bnp-panel .btn-primary {
+        background: var(--green);
+        color: #fff;
+        border-color: var(--green-dark);
+        font-size: 14px;
+        padding: 10px 14px;
+        width: 100%;
+        letter-spacing: 0.1em;
+      }
+      #bnp-panel .btn-primary:hover { background: var(--green-dark); color: #fff; border-color: var(--green-dark); }
+      #bnp-panel .btn-primary::before { content: '▶ '; font-size: 10px; opacity: 0.8; }
+      #bnp-panel .btn-preset {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 6px 10px;
+        width: 100%;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: var(--text2);
+        letter-spacing: 0.04em;
+      }
+      #bnp-panel .btn-preset::before {
+        content: '';
+        width: 3px; height: 3px;
+        border-radius: 50%;
+        background: var(--green);
+        flex-shrink: 0;
+      }
+      #bnp-panel .btn-preset:hover { color: var(--text); }
+      #bnp-panel .selector-block { display: flex; flex-direction: column; gap: 10px; }
+      #bnp-panel .settings-area {
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        background: var(--bg);
+        overflow: hidden;
+      }
+      #bnp-panel .settings-inner {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        padding: 10px;
+      }
+      #bnp-panel .settings-inner.active { display: flex; }
+      #bnp-panel .settings-category {
+        font-size: 10px;
+        font-family: var(--mono);
+        color: var(--text3);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 6px 10px 3px;
+        border-top: 1px solid var(--border);
+        margin-top: 2px;
+      }
+      #bnp-panel .settings-category:first-child { border-top: none; padding-top: 2px; margin-top: 0; }
+      #bnp-panel .guide-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+      #bnp-panel .guide-card {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 10px 8px 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: border-color 0.15s, background 0.15s;
+      }
+      #bnp-panel .guide-card:hover {
+        border-color: var(--border-green);
+        background: var(--bg3);
+      }
+      #bnp-panel .guide-card:hover .guide-frame { border-color: var(--green); }
+      #bnp-panel .guide-preview {
+        width: 100%;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #bnp-panel .guide-frame {
+        border: 1.5px solid var(--text3);
+        border-radius: 2px;
+        background: var(--bg3);
+        transition: border-color 0.15s;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #bnp-panel .guide-frame::after {
+        content: '';
+        position: absolute;
+        inset: 3px;
+        border: 1px dashed rgba(255,255,255,0.06);
+        border-radius: 1px;
+      }
+      #bnp-panel .guide-name {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text2);
+        text-align: center;
+        line-height: 1.2;
+      }
+      #bnp-panel .guide-dims {
+        font-size: 9px;
+        font-family: var(--mono);
+        color: var(--text3);
+        text-align: center;
+        margin-top: 1px;
+      }
+      #bnp-panel .info-bar {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      #bnp-panel .info-entries { display: flex; flex-direction: column; gap: 2px; }
+      #bnp-panel .info-entry { font-size: 11px; font-family: var(--mono); color: var(--text2); }
+      #bnp-panel .info-entry span { color: var(--text); }
+      #bnp-panel .watermark {
+        text-align: center;
+        padding: 10px;
+        font-size: 10px;
+        font-family: var(--mono);
+        color: var(--text3);
+        border-top: 1px solid var(--border);
+        letter-spacing: 0.06em;
+      }
+
+      /* TERMINAL CONSOLE STYLES */
+      .terminal-card {
+        background: #121212;
+        border: 1px solid rgba(255,255,255,0.05);
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+      }
+      .terminal-header {
+        padding: 12px 20px;
+        background: #181118;
+        background: #181818;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .terminal-title-container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #ffffff;
+      }
+      .terminal-title {
+        font-size: 12px;
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #ffffff;
+        font-weight: 700;
+        margin: 0;
+      }
+      .terminal-clear-btn {
+        background: transparent;
+        border: none;
+        color: #555555;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        padding: 6px 12px;
+        border-radius: 4px;
+        transition: all 0.15s;
+        text-transform: uppercase;
+      }
+      .terminal-clear-btn:hover {
+        color: #cccccc;
+        background: rgba(255,255,255,0.05);
+      }
+      .terminal-body {
+        padding: 16px;
+        background: #0a0a0a;
+        min-height: 140px;
+        max-height: 220px;
+        overflow-y: auto;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .log-row {
+        display: flex;
+        align-items: start;
+        gap: 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.02);
+        padding-bottom: 6px;
+      }
+      .log-row:last-child {
+        border-bottom: none;
+      }
+      .log-timestamp {
+        color: #333333;
+        user-select: none;
+        flex-shrink: 0;
+      }
+      .log-msg-system {
+        color: #38bdf8;
+        font-weight: 500;
+      }
+      .log-msg-ooredoo {
+        color: #ED1C24;
+      }
+      .log-msg-sga {
+        color: #E30613;
+      }
+      .log-msg-bnp {
+        color: #009464;
+      }
+
+      /* FOOTER */
+      footer {
+        border-top: 1px solid rgba(255,255,255,0.05);
+        background: rgba(18, 18, 18, 0.3);
+        padding: 24px;
+        text-align: center;
+        font-size: 12px;
+        font-family: var(--font-mono);
+        color: #555555;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: auto;
+      }
+      @media (max-width: 640px) {
+        footer {
+          flex-direction: column;
+          gap: 12px;
+        }
+      }
+
+      /* MODAL OVERLAYS & CONTAINER BOXES */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+      }
+      .modal-overlay.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .modal {
+        background: #141414;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        width: 90%;
+        max-width: 440px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        font-family: var(--font-sans);
+        color: #cccccc;
+      }
+      .modal-header {
+        padding: 14px 18px;
+        background: #1c1c1c;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .modal-title {
+        font-size: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #ffffff;
+      }
+      .modal-close {
+        background: none;
+        border: none;
+        color: #888888;
+        font-size: 16px;
+        cursor: pointer;
+        transition: color 0.15s;
+      }
+      .modal-close:hover {
+        color: #ffffff;
+      }
+      .modal-body {
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .modal-field {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .mf-icon {
+        color: #888888;
+        font-size: 18px;
+      }
+      .modal-field-ooredoo .mf-icon { color: #ED1C24; }
+      .modal-field-sga .mf-icon { color: #E30613; }
+      .modal-field-bnp .mf-icon { color: #009464; }
+      .mf-label {
+        font-size: 10px;
+        font-family: var(--font-mono);
+        color: #555555;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .mf-value {
+        font-size: 15px;
+        font-weight: 600;
+        color: #ffffff;
+      }
+      .modal-desc {
+        background: #0d0d0d;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 4px;
+        padding: 12px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        line-height: 1.5;
+        color: #888888;
+      }
+      .modal-desc .tag {
+        color: #444444;
+      }
+      .modal-footer {
+        padding: 12px 18px;
+        background: #1c1c1c;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        justify-content: flex-end;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- GLOBAL HEADER -->
+    <header id="global-header">
+      <div class="logo-container">
+        <div class="logo-icon-bg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        </div>
+        <div class="logo-title-container">
+          <h1>BOUDIAF Zakaria Brand Suite Toolkit Hub</h1>
+          <p>Production After Effects Automation Panel Manager</p>
+        </div>
+      </div>
+
+      <div class="header-status-group">
+        <div class="status-agent">
+          <span class="status-dot"></span>
+          <span>Agent Server: <strong class="text-white">ONLINE</strong></span>
+        </div>
+        <div class="status-time">
+          Local Time: <span id="clock-date">--/--/----</span> &mdash; <span id="clock-time">00:00:00 PM</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN EXECUTABLE CONTAINER -->
+    <main>
+      
+      <!-- DESCRIPTIVE HEADER HERO BANNER -->
+      <div class="upper-banner">
+        <div class="upper-banner-left">
+          <h2 class="upper-banner-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Three Integrated Brand Toolkits Side-By-Side
+          </h2>
+          <p class="upper-banner-desc">
+            This workspace integrates original After Effects automation extensions for Ooredoo, Société Générale, and BNP Paribas. Each portal is aligned horizontally with native titles, distinct margins, and fully interactive event loops to mimic a professional production workspace.
+          </p>
+        </div>
+        <div class="upper-banner-guide">
+          <div class="guide-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+            Interactive Guide
+          </div>
+          Click preset buttons or type names in each panel to triggers code injections and compile actual workflow actions on the event console.
+        </div>
+      </div>
+
+      <!-- PORTALS BLOCK COLLATERALS -->
+      <div class="panels-container custom-scrollbar">
+
+        <!-- BRAND 1: OOREDOO -->
+        <div class="portal-column">
+          <div class="portal-column-header">
+            <span class="portal-tag" style="color: #ED1C24;">Portal 01</span>
+            <h3 class="portal-name">OOREDOO EXTENSION PORTAL</h3>
+            <div class="portal-bar" style="background-color: #ED1C24;"></div>
+          </div>
+
+          <div id="ooredoo-panel">
+            <div class="panel">
+              <!-- HEADER -->
+              <div class="panel-header">
+                <div class="blink-dot"></div>
+                <div>
+                  <div class="panel-title">Ooredoo Project Builder</div>
+                  <div class="panel-sub">v1.0.0 — After Effects Extension</div>
+                </div>
+                <span class="badge" style="margin-left: auto;">AE</span>
+              </div>
+
+              <!-- BODY -->
+              <div class="panel-body">
+                <div class="section">
+                  <div class="section-label">Project Creation</div>
+                  <div class="form-row">
+                    <div class="form-field" style="flex: 2;">
+                      <label>Project Name</label>
+                      <input type="text" id="ooredoo-project-name" placeholder="Enter project name…" />
+                    </div>
+                    <div class="form-field" style="flex: 1;">
+                      <label>Language</label>
+                      <div class="select-wrap">
+                        <select id="ooredoo-language">
+                          <option value="FR">FR</option>
+                          <option value="AR">AR</option>
+                          <option value="FR + AR" selected>FR + AR</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="info-bar">
+                  <div class="info-entries">
+                    <div class="info-entry">User: <span>LC 65 — BOUDIAF ZAKARIA</span></div>
+                    <div class="info-entry">IP: <span>192.168.0.0</span></div>
+                  </div>
+                  <button class="btn" id="ooredoo-about">About</button>
+                </div>
+
+                <button class="btn btn-primary" id="ooredoo-build">Build Ooredoo Project</button>
+
+                <div class="divider"></div>
+
+                <!-- TABS -->
+                <div class="tabs">
+                  <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="bulle">Bulle &amp; Slide</button>
+                    <button class="tab-btn" data-tab="guide">Screen Guide</button>
+                    <button class="tab-btn" data-tab="logo">Logo</button>
+                    <button class="tab-btn" data-tab="text">Add Text</button>
+                  </div>
+
+                  <!-- BULLE WORKSPACE -->
+                  <div class="tab-content active" id="tab-content-bulle">
+                    <div class="presets-grid">
+                      <div class="preset-group-label">Bulle Presets</div>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="01 — Bulle TXT">01 — Bulle TXT</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="02 — Bulle SLID">02 — Bulle SLID</button>
+                      <div class="preset-group-label">Slide Presets</div>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="03 — Slide TOP">03 — Slide TOP</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="04 — Slide BOTTOM">04 — Slide BOTTOM</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="05 — Slide LEFT">05 — Slide LEFT</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="06 — Slide RIGHT">06 — Slide RIGHT</button>
+                    </div>
+                  </div>
+
+                  <!-- SCREEN GUIDE WORKSPACE -->
+                  <div class="tab-content" id="tab-content-guide">
+                    <div class="presets-grid">
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="00 — RGB Colour Palette">00 — RGB Colour Palette</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="01 — LA CHARTE LOGO (1920×1080)">01 — LA CHARTE LOGO (1920×1080)</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="02 — LA CHARTE LOGO — Twitter (1200×675)">02 — LA CHARTE LOGO — Twitter (1200×675)</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="03 — LA CHARTE LOGO — LinkedIn (1104×736)">03 — LA CHARTE LOGO — LinkedIn (1104×736)</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="04 — LA CHARTE LOGO — Square (1:1)">04 — LA CHARTE LOGO — Square (1:1)</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="05 — LA CHARTE LOGO — Story (4:5)">05 — LA CHARTE LOGO — Story (4:5)</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="06 — LA CHARTE LOGO — Story (9:16)">06 — LA CHARTE LOGO — Story (9:16)</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="07 — LA CHARTE LOGO Format Cinéma (2048×858)">07 — LA CHARTE LOGO Format Cinéma (2048×858)</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="08 — LA CHARTE LOGO AdDISPLAY (5760×3840)">08 — LA CHARTE LOGO AdDISPLAY (5760×3840)</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="09 — LA CHARTE LOGO PIKASSO (2160×3840)">09 — LA CHARTE LOGO PIKASSO (2160×3840)</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="10 — LA CHARTE LOGO Écran A (512×640)">10 — LA CHARTE LOGO Écran A (512×640)</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="11 — LA CHARTE LOGO Écran B (4288×256)">11 — LA CHARTE LOGO Écran B (4288×256)</button>
+                    </div>
+                  </div>
+
+                  <!-- LOGO WORKSPACE -->
+                  <div class="tab-content" id="tab-content-logo">
+                    <div class="presets-grid">
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="01 — OOREDOO LOGO Screen">01 — OOREDOO LOGO Screen</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="02 — OOREDOO LOGO EN — Red BG">02 — OOREDOO LOGO EN — Red BG</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="02 — OOREDOO LOGO EN — White BG">02 — OOREDOO LOGO EN — White BG</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="03 — OOREDOO LOGO AR — Red BG">03 — OOREDOO LOGO AR — Red BG</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="03 — OOREDOO LOGO AR — White BG">03 — OOREDOO LOGO AR — White BG</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="04 — OOREDOO LOGO Business — Blue BG">04 — OOREDOO LOGO Business — Blue BG</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="04 — OOREDOO LOGO Business — White BG">04 — OOREDOO LOGO Business — White BG</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="05 — OOREDOO Favicon">05 — OOREDOO Favicon</button>
+                    </div>
+                  </div>
+
+                  <!-- ADD TEXT WORKSPACE -->
+                  <div class="tab-content" id="tab-content-text">
+                    <div class="presets-grid">
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="01 — FR TEXT">01 — FR TEXT</button>
+                      <button class="btn btn-preset" data-type="ooredoo" data-preset="02 — AR TEXT">02 — AR TEXT</button>
+                    </div>
+                    <div class="info-box" style="margin-top: 8px;">
+                      <div><span>1.</span> Add your preset text</div>
+                      <div><span>2.</span> Edit your text block</div>
+                      <div><span>3.</span> Select layer → <strong>Shift+Ctrl+N</strong></div>
+                      <div><span>4.</span> Work is done!</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- WATERMARK -->
+              <div class="watermark">© 2025 — Boudiaf Zakaria — Internal Use Only — OOREEDOO</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BRAND 2: SOCIÉTÉ GÉNÉRALE ALGÉRIE -->
+        <div class="portal-column">
+          <div class="portal-column-header">
+            <span class="portal-tag" style="color: #E30613;">Portal 02</span>
+            <h3 class="portal-name">SGA COMPOSITION TOOLKIT</h3>
+            <div class="portal-bar" style="background-color: #E30613;"></div>
+          </div>
+
+          <div id="sga-panel">
+            <div class="panel">
+              <!-- HEADER -->
+              <div class="panel-header">
+                <div class="blink-dot"></div>
+                <div>
+                  <div class="panel-title">Société Générale Algérie Toolkit</div>
+                  <div class="panel-sub">v1.1.0 — After Effects Extension</div>
+                </div>
+                <span class="badge" style="margin-left: auto;">AE</span>
+              </div>
+
+              <!-- BODY -->
+              <div class="panel-body">
+                <div class="section">
+                  <div class="section-label">Project &amp; Composition Settings</div>
+                  <div class="form-row">
+                    <div class="form-field" style="flex: 2;">
+                      <label>Project Name</label>
+                      <input type="text" id="sga-project-name" placeholder="Enter project name…" />
+                    </div>
+                    <div class="form-field" style="flex: 1.4;">
+                      <label>Language</label>
+                      <div class="select-wrap">
+                        <select id="sga-language">
+                          <option>French Composition</option>
+                          <option>Arabic Composition</option>
+                          <option>French + Arabic</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary" id="sga-build">Create SGA Project</button>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="section">
+                  <div class="section-label">Settings Selector</div>
+                  <div class="selector-block">
+                    <div class="select-wrap">
+                      <select id="sga-category-select">
+                        <option value="logo" selected>Logo Settings</option>
+                        <option value="line">Moving Line Settings</option>
+                        <option value="text">Text Settings</option>
+                        <option value="transition">Transition Settings</option>
+                        <option value="guide">Screen Guides</option>
+                      </select>
+                    </div>
+
+                    <div class="settings-area">
+                      <!-- LOGO PRESENTS -->
+                      <div class="settings-inner active" id="sga-inner-logo">
+                        <div class="settings-category">Logo Presets</div>
+                        <button class="btn btn-preset" data-type="sga" data-preset="SGA Intro">SGA Intro</button>
+                        <button class="btn btn-preset" data-type="sga" data-preset="Logo Screen SGA">Logo Screen SGA</button>
+                        <button class="btn btn-preset" data-type="sga" data-preset="Bloc Marque Screen">Bloc Marque Screen</button>
+                        <button class="btn btn-preset" data-type="sga" data-preset="Bloc Marque Out">Bloc Marque Out</button>
+                      </div>
+
+                      <!-- LINE PRESENTS -->
+                      <div class="settings-inner" id="sga-inner-line">
+                        <div class="settings-category">Line Presets</div>
+                        <button class="btn btn-preset" data-type="sga" data-preset="Red Moving Line">Red Moving Line</button>
+                        <button class="btn btn-preset" data-type="sga" data-preset="White Moving Line">White Moving Line</button>
+                      </div>
+
+                      <!-- TEXT PRESENTS -->
+                      <div class="settings-inner" id="sga-inner-text">
+                        <div class="settings-category">Text Presets</div>
+                        <button class="btn btn-preset" data-type="sga" data-preset="TXT AR">TXT AR</button>
+                        <button class="btn btn-preset" data-type="sga" data-preset="TXT FR">TXT FR</button>
+                      </div>
+
+                      <!-- TRANSITION PRESENTS -->
+                      <div class="settings-inner" id="sga-inner-transition">
+                        <div class="settings-category">Transition Presets</div>
+                        <button class="btn btn-preset" data-type="sga" data-preset="Left Transition">Left Transition</button>
+                        <button class="btn btn-preset" data-type="sga" data-preset="Right Transition">Right Transition</button>
+                        <button class="btn btn-preset" data-type="sga" data-preset="Top Transition">Top Transition</button>
+                        <button class="btn btn-preset" data-type="sga" data-preset="Bottom Transition">Bottom Transition</button>
+                      </div>
+
+                      <!-- GUIDES PRESENTS -->
+                      <div class="settings-inner" id="sga-inner-guide">
+                        <div class="settings-category">Screen Formats</div>
+                        <button class="btn btn-preset" data-type="sga" data-preset="YouTube — 1920 × 1080">YouTube — 1920 × 1080</button>
+                        <button class="btn btn-preset" data-type="sga" data-preset="Twitter — 1200 × 675">Twitter — 1200 × 675</button>
+                        <button class="btn btn-preset" data-type="sga" data-preset="LinkedIn — 1104 × 736">LinkedIn — 1104 × 736</button>
+                        <button class="btn btn-preset" data-type="sga" data-preset="Square — 1080 × 1080">Square — 1080 × 1080</button>
+                        <button class="btn btn-preset" data-type="sga" data-preset="Square — 1080 × 1350">Square — 1080 × 1350</button>
+                        <button class="btn btn-preset" data-type="sga" data-preset="Story — 1080 × 1920">Story — 1080 × 1920</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- SOCIAL MEDIA GUIDES COMPACT -->
+                <div class="section">
+                  <div class="section-label">Social Media Screen Guide</div>
+                  <div class="guide-grid">
+                    <!-- YouTube -->
+                    <div class="guide-card" data-guide="YouTube Guide Grid (1920 × 1080)" data-type="sga">
+                      <div class="guide-preview">
+                        <div class="guide-frame" style="width: 50px; height: 28px;"></div>
+                      </div>
+                      <div>
+                        <div class="guide-name">YouTube</div>
+                        <div class="guide-dims">1920 × 1080</div>
+                      </div>
+                    </div>
+
+                    <!-- Twitter -->
+                    <div class="guide-card" data-guide="Twitter Guide Grid (1200 × 675)" data-type="sga">
+                      <div class="guide-preview">
+                        <div class="guide-frame" style="width: 50px; height: 28px;"></div>
+                      </div>
+                      <div>
+                        <div class="guide-name">Twitter</div>
+                        <div class="guide-dims">1200 × 675</div>
+                      </div>
+                    </div>
+
+                    <!-- LinkedIn -->
+                    <div class="guide-card" data-guide="LinkedIn Guide Grid (1104 × 736)" data-type="sga">
+                      <div class="guide-preview">
+                        <div class="guide-frame" style="width: 50px; height: 33px;"></div>
+                      </div>
+                      <div>
+                        <div class="guide-name">LinkedIn</div>
+                        <div class="guide-dims">1104 × 736</div>
+                      </div>
+                    </div>
+
+                    <!-- Square 1:1 -->
+                    <div class="guide-card" data-guide="Square Standard Guide Grid (1080 × 1080)" data-type="sga">
+                      <div class="guide-preview">
+                        <div class="guide-frame" style="width: 40px; height: 40px;"></div>
+                      </div>
+                      <div>
+                        <div class="guide-name">Square</div>
+                        <div class="guide-dims">1080 × 1080</div>
+                      </div>
+                    </div>
+
+                    <!-- Square 4:5 -->
+                    <div class="guide-card" data-guide="Square Portrait Guide Grid (1080 × 1350)" data-type="sga">
+                      <div class="guide-preview">
+                        <div class="guide-frame" style="width: 40px; height: 50px;"></div>
+                      </div>
+                      <div>
+                        <div class="guide-name">Square</div>
+                        <div class="guide-dims">1080 × 1350</div>
+                      </div>
+                    </div>
+
+                    <!-- Story -->
+                    <div class="guide-card" data-guide="Story Guide Grid (1080 × 1920)" data-type="sga">
+                      <div class="guide-preview">
+                        <div class="guide-frame" style="width: 28px; height: 50px;"></div>
+                      </div>
+                      <div>
+                        <div class="guide-name">Story</div>
+                        <div class="guide-dims">1080 × 1920</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="info-bar">
+                  <div class="info-entries">
+                    <div class="info-entry">User: <span>BOUDIAF ZAKARIA</span></div>
+                    <div class="info-entry">Version: <span>1.1.0</span></div>
+                  </div>
+                  <button class="btn" id="sga-about">About</button>
+                </div>
+              </div>
+
+              <!-- WATERMARK -->
+              <div class="watermark">© 2025 — Boudiaf Zakaria — Internal Use Only — SGA</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BRAND 3: BNP PARIBAS EL DJAZAÏR -->
+        <div class="portal-column">
+          <div class="portal-column-header">
+            <span class="portal-tag" style="color: #009464;">Portal 03</span>
+            <h3 class="portal-name">BNP EL DJAZAÏR SUITE</h3>
+            <div class="portal-bar" style="background-color: #009464;"></div>
+          </div>
+
+          <div id="bnp-panel">
+            <div class="panel">
+              <!-- HEADER -->
+              <div class="panel-header">
+                <div class="blink-dot"></div>
+                <div>
+                  <div class="panel-title">BNP Paribas El Djazaïr Toolkit</div>
+                  <div class="panel-sub">v1.0.0 — After Effects Extension</div>
+                </div>
+                <span class="badge" style="margin-left: auto;">AE</span>
+              </div>
+
+              <!-- BODY -->
+              <div class="panel-body">
+                <div class="section">
+                  <div class="section-label">Project Builder</div>
+                  <div class="form-row">
+                    <div class="form-field" style="flex: 2;">
+                      <label>Project Name</label>
+                      <input type="text" id="bnp-project-name" placeholder="Enter project name…" />
+                    </div>
+                    <div class="form-field" style="flex: 1.4;">
+                      <label>Language</label>
+                      <div class="select-wrap">
+                        <select id="bnp-language">
+                          <option>French Composition</option>
+                          <option>Arabic Composition</option>
+                          <option>French + Arabic</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary" id="bnp-build">Create BNP Project</button>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="section">
+                  <div class="section-label">Section Selector</div>
+                  <div class="selector-block">
+                    <div class="select-wrap">
+                      <select id="bnp-category-select">
+                        <option value="logo" selected>Logo Tools</option>
+                        <option value="line">Motion Lines</option>
+                        <option value="text">Text Tools</option>
+                        <option value="transition">Transitions</option>
+                        <option value="guide">Screen Guides</option>
+                      </select>
+                    </div>
+
+                    <div class="settings-area">
+                      <!-- LOGO TOOLS -->
+                      <div class="settings-inner active" id="bnp-inner-logo">
+                        <div class="settings-category">Logo Presets</div>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="BNP Intro">BNP Intro</button>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="Logo Reveal">Logo Reveal</button>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="Bloc Marque">Bloc Marque</button>
+                      </div>
+
+                      <!-- MOTION LINES -->
+                      <div class="settings-inner" id="bnp-inner-line">
+                        <div class="settings-category">Motion Presets</div>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="Green Line">Green Line</button>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="White Line">White Line</button>
+                      </div>
+
+                      <!-- TEXT TOOLS -->
+                      <div class="settings-inner" id="bnp-inner-text">
+                        <div class="settings-category">Text Presets</div>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="TXT FR">TXT FR</button>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="TXT AR">TXT AR</button>
+                      </div>
+
+                      <!-- TRANSITIONS -->
+                      <div class="settings-inner" id="bnp-inner-transition">
+                        <div class="settings-category">Transition Presets</div>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="Left Transition">Left Transition</button>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="Right Transition">Right Transition</button>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="Top Transition">Top Transition</button>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="Bottom Transition">Bottom Transition</button>
+                      </div>
+
+                      <!-- SCREEN GUIDES -->
+                      <div class="settings-inner" id="bnp-inner-guide">
+                        <div class="settings-category">Screen Formats</div>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="YouTube — 1920 × 1080">YouTube — 1920 × 1080</button>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="Twitter — 1200 × 675">Twitter — 1200 × 675</button>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="LinkedIn — 1104 × 736">LinkedIn — 1104 × 736</button>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="Square — 1080 × 1080">Square — 1080 × 1080</button>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="Square — 1080 × 1350">Square — 1080 × 1350</button>
+                        <button class="btn btn-preset" data-type="bnp" data-preset="Story — 1080 × 1920">Story — 1080 × 1920</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- BNP SCREEN FORMATS COMPACT -->
+                <div class="section">
+                  <div class="section-label">Social Media Screen Guide</div>
+                  <div class="guide-grid">
+                    <!-- YouTube -->
+                    <div class="guide-card" data-guide="YouTube Composition Grid (1920 × 1080)" data-type="bnp">
+                      <div class="guide-preview">
+                        <div class="guide-frame" style="width: 50px; height: 28px;"></div>
+                      </div>
+                      <div>
+                        <div class="guide-name">YouTube</div>
+                        <div class="guide-dims">1920 × 1080</div>
+                      </div>
+                    </div>
+
+                    <!-- Twitter -->
+                    <div class="guide-card" data-guide="Twitter Composition Grid (1200 × 675)" data-type="bnp">
+                      <div class="guide-preview">
+                        <div class="guide-frame" style="width: 50px; height: 28px;"></div>
+                      </div>
+                      <div>
+                        <div class="guide-name">Twitter</div>
+                        <div class="guide-dims">1200 × 675</div>
+                      </div>
+                    </div>
+
+                    <!-- LinkedIn -->
+                    <div class="guide-card" data-guide="LinkedIn Composition Grid (1104 × 736)" data-type="bnp">
+                      <div class="guide-preview">
+                        <div class="guide-frame" style="width: 50px; height: 33px;"></div>
+                      </div>
+                      <div>
+                        <div class="guide-name">LinkedIn</div>
+                        <div class="guide-dims">1104 × 736</div>
+                      </div>
+                    </div>
+
+                    <!-- Square 1:1 -->
+                    <div class="guide-card" data-guide="Square Standard Grid (1080 × 1080)" data-type="bnp">
+                      <div class="guide-preview">
+                        <div class="guide-frame" style="width: 40px; height: 40px;"></div>
+                      </div>
+                      <div>
+                        <div class="guide-name">Square</div>
+                        <div class="guide-dims">1080 × 1080</div>
+                      </div>
+                    </div>
+
+                    <!-- Square 4:5 -->
+                    <div class="guide-card" data-guide="Square Portrait Grid (1080 × 1350)" data-type="bnp">
+                      <div class="guide-preview">
+                        <div class="guide-frame" style="width: 40px; height: 50px;"></div>
+                      </div>
+                      <div>
+                        <div class="guide-name">Square</div>
+                        <div class="guide-dims">1080 × 1350</div>
+                      </div>
+                    </div>
+
+                    <!-- Story -->
+                    <div class="guide-card" data-guide="Story Vertical Grid (1080 × 1920)" data-type="bnp">
+                      <div class="guide-preview">
+                        <div class="guide-frame" style="width: 28px; height: 50px;"></div>
+                      </div>
+                      <div>
+                        <div class="guide-name">Story</div>
+                        <div class="guide-dims">1080 × 1920</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="info-bar">
+                  <div class="info-entries">
+                    <div class="info-entry">User: <span>BOUDIAF ZAKARIA</span></div>
+                    <div class="info-entry">Version: <span>1.0.0</span></div>
+                  </div>
+                  <button class="btn" id="bnp-about">About</button>
+                </div>
+              </div>
+
+              <!-- WATERMARK -->
+              <div class="watermark">© 2025 — Boudiaf Zakaria — Internal Use Only — BNP</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- UNIFIED ACTION LOGS TERMINAL -->
+      <div class="terminal-card">
+        <div class="terminal-header">
+          <div class="terminal-title-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>
+            <h4 class="terminal-title">AE Bridge Logs Terminal</h4>
+          </div>
+          <button class="terminal-clear-btn" id="clear-console-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+            Clear Console
+          </button>
+        </div>
+
+        <div class="terminal-body custom-scrollbar" id="logs-container">
+          <div class="log-row">
+            <span class="log-timestamp" id="initial-log-time">[00:00:00 PM]</span>
+            <span class="log-msg-system">🔌 AE Extension Hub initialized. Standby for project compiling...</span>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div>© 2026 BOUDIAF Zakaria Brand Suite.Production After Effects Automation Panel Manager
+
+</div>
+      <div>Designed by <span style="color: #888888; font-weight: bold;">Boudiaf Zakaria</span> — Internal use authorization restricted.</div>
+    </footer>
+
+
+    <!-- ========================================== -->
+    <!-- ABOUT MODALS -->
+    <!-- ========================================== -->
+
+    <!-- Ooredoo Modal -->
+    <div class="modal-overlay" id="modal-ooredoo">
+      <div class="modal">
+        <div class="modal-header">
+          <span class="modal-title">About This Tool</span>
+          <button class="modal-close">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-field modal-field-ooredoo">
+            <span class="mf-icon">◉</span>
+            <div>
+              <div class="mf-label">Created By</div>
+              <div class="mf-value">Boudiaf Zakaria</div>
+            </div>
+          </div>
+          <div class="modal-field modal-field-ooredoo">
+            <span class="mf-icon">◈</span>
+            <div>
+              <div class="mf-label">Version</div>
+              <div class="mf-value">1.0.0</div>
+            </div>
+          </div>
+          <div class="modal-desc">
+            <div><span class="tag">// Description</span></div>
+            <div>Automates After Effects project setup for Ooredoo branding in FR and AR formats.</div>
+            <br />
+            <div><span class="tag">// Includes</span></div>
+            <div>⚙ Preset Loader</div>
+            <div>◎ Logo System</div>
+            <div>⊞ Screen Guides</div>
+            <div>⬡ Bulle &amp; Slide Tools</div>
+            <div>✦ Project Template Builder</div>
+            <br />
+            <div><span class="tag">// Access</span></div>
+            <div>For internal use only — Lotus Conseil.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SGA Modal -->
+    <div class="modal-overlay" id="modal-sga">
+      <div class="modal">
+        <div class="modal-header">
+          <span class="modal-title">About SGA Toolkit</span>
+          <button class="modal-close">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-field modal-field-sga">
+            <span class="mf-icon">◉</span>
+            <div>
+              <div class="mf-label">Created By</div>
+              <div class="mf-value">Boudiaf Zakaria</div>
+            </div>
+          </div>
+          <div class="modal-field modal-field-sga">
+            <span class="mf-icon">◈</span>
+            <div>
+              <div class="mf-label">Version</div>
+              <div class="mf-value">1.1.0</div>
+            </div>
+          </div>
+          <div class="modal-desc">
+            <div><span class="tag">// Description</span></div>
+            <div>Automates After Effects project setup for SGA branding in FR and AR formats.</div>
+            <br />
+            <div><span class="tag">// Includes</span></div>
+            <div>⚙ Preset Loader</div>
+            <div>◎ Logo System</div>
+            <div>⊞ Screen Guides</div>
+            <div>⬡ Moving Line Tools</div>
+            <div>✦ Project Template Builder</div>
+            <br />
+            <div><span class="tag">// Access</span></div>
+            <div>For internal use only.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BNP Modal -->
+    <div class="modal-overlay" id="modal-bnp">
+      <div class="modal">
+        <div class="modal-header">
+          <span class="modal-title">About BNP Toolkit</span>
+          <button class="modal-close">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-field modal-field-bnp">
+            <span class="mf-icon">◉</span>
+            <div>
+              <div class="mf-label">Created By</div>
+              <div class="mf-value">Boudiaf Zakaria</div>
+            </div>
+          </div>
+          <div class="modal-field modal-field-bnp">
+            <span class="mf-icon">◈</span>
+            <div>
+              <div class="mf-label">Version</div>
+              <div class="mf-value">1.0.0</div>
+            </div>
+          </div>
+          <div class="modal-desc">
+            <div><span class="tag">// Description</span></div>
+            <div>Automates BNP Paribas After Effects project setup in FR and AR formats.</div>
+            <br />
+            <div><span class="tag">// Includes</span></div>
+            <div>⚙ Project Builder</div>
+            <div>◎ Logo System</div>
+            <div>⊞ Screen Guides</div>
+            <div>⬡ Motion Tools</div>
+            <div>✦ Workflow Automation</div>
+            <br />
+            <div><span class="tag">// Access</span></div>
+            <div>For internal use only.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn">Close</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- INTERACTIVE EVENT COORD CONTROLS (VANILLA JS) -->
+    <!-- ========================================== -->
+    <script>
+      (function() {
+        // Init initial logger timestamp
+        const initialLogTime = document.getElementById('initial-log-time');
+        if (initialLogTime) {
+          initialLogTime.innerText = '[' + new Date().toLocaleTimeString() + ']';
+        }
+
+        // Live Clock Updates
+        const clockDate = document.getElementById('clock-date');
+        const clockTime = document.getElementById('clock-time');
+        function updateClock() {
+          const now = new Date();
+          if (clockDate) clockDate.innerText = now.toLocaleDateString();
+          if (clockTime) clockTime.innerText = now.toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Terminal Log Appender
+        const logsContainer = document.getElementById('logs-container');
+        function addLog(message, type) {
+          const now = new Date();
+          const timestamp = now.toLocaleTimeString();
+          const div = document.createElement('div');
+          div.className = 'log-row';
+          
+          let msgClass = 'log-msg-system';
+          if (type === 'ooredoo') {
+            msgClass = 'log-msg-ooredoo';
+          } else if (type === 'sga') {
+            msgClass = 'log-msg-sga';
+          } else if (type === 'bnp') {
+            msgClass = 'log-msg-bnp';
+          }
+
+          div.innerHTML = `
+            <span class="log-timestamp">[${timestamp}]</span>
+            <span class="${msgClass}">${message}</span>
+          `;
+          
+          if (logsContainer) {
+            logsContainer.insertBefore(div, logsContainer.firstChild);
+            // Limit to max 50 entries
+            while (logsContainer.children.length > 50) {
+              logsContainer.removeChild(logsContainer.lastChild);
+            }
+          }
+        }
+
+        // Clear Console Trigger
+        const clearBtn = document.getElementById('clear-console-btn');
+        if (clearBtn) {
+          clearBtn.addEventListener('click', () => {
+            if (logsContainer) {
+              logsContainer.innerHTML = `
+                <div class="log-row">
+                  <span class="log-timestamp">[${new Date().toLocaleTimeString()}]</span>
+                  <span class="log-msg-system">🗑️ Action logs cleared. Standby...</span>
+                </div>
+              `;
+            }
+          });
+        }
+
+        // Modal Setup Handler
+        function setupModal(triggerId, modalId, brandId) {
+          const trigger = document.getElementById(triggerId);
+          const modal = document.getElementById(modalId);
+          if (!trigger || !modal) return;
+
+          const closeButtons = modal.querySelectorAll('.modal-close, .modal-footer .btn');
+
+          trigger.addEventListener('click', () => {
+            modal.classList.add('open');
+            addLog(`ℹ️ ${brandId.toUpperCase()}: Clicked "About" information panel`, brandId);
+          });
+
+          closeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+              modal.classList.remove('open');
+            });
+          });
+
+          modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+              modal.classList.remove('open');
+            }
+          });
+        }
+        setupModal('ooredoo-about', 'modal-ooredoo', 'ooredoo');
+        setupModal('sga-about', 'modal-sga', 'sga');
+        setupModal('bnp-about', 'modal-bnp', 'bnp');
+
+        // Ooredoo Tabs Switching
+        const tabBtns = document.querySelectorAll('#ooredoo-panel .tab-btn');
+        tabBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const target = btn.getAttribute('data-tab');
+            
+            // Remove active state
+            document.querySelectorAll('#ooredoo-panel .tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('#ooredoo-panel .tab-content').forEach(c => c.classList.remove('active'));
+
+            // Add active state
+            btn.classList.add('active');
+            const targetContent = document.getElementById(`tab-content-${target}`);
+            if (targetContent) targetContent.classList.add('active');
+
+            const tabNames = {
+              bulle: 'Bulle & Slide',
+              guide: 'Screen Guide',
+              logo: 'Logo',
+              text: 'Add Text'
+            };
+            addLog(`📂 Ooredoo: Switched workspace to "${tabNames[target] || target}" tab`, 'ooredoo');
+          });
+        });
+
+        // SGA Selector Switches
+        const sgaSelect = document.getElementById('sga-category-select');
+        if (sgaSelect) {
+          sgaSelect.addEventListener('change', (e) => {
+            const val = e.target.value;
+            document.querySelectorAll('#sga-panel .settings-inner').forEach(inner => inner.classList.remove('active'));
+            const targetInner = document.getElementById(`sga-inner-${val}`);
+            if (targetInner) targetInner.classList.add('active');
+            addLog(`📂 SGA: Switch Category Settings to "${val.toUpperCase()}"`, 'sga');
+          });
+        }
+
+        // BNP Selector Switches
+        const bnpSelect = document.getElementById('bnp-category-select');
+        if (bnpSelect) {
+          bnpSelect.addEventListener('change', (e) => {
+            const val = e.target.value;
+            document.querySelectorAll('#bnp-panel .settings-inner').forEach(inner => inner.classList.remove('active'));
+            const targetInner = document.getElementById(`bnp-inner-${val}`);
+            if (targetInner) targetInner.classList.add('active');
+            addLog(`📂 BNP: Switch section view to "${val.toUpperCase()}"`, 'bnp');
+          });
+        }
+
+        // Setup dynamic preset elements listeners
+        document.querySelectorAll('[data-preset]').forEach(el => {
+          el.addEventListener('click', () => {
+            const presetName = el.getAttribute('data-preset');
+            const brandType = el.getAttribute('data-type');
+            
+            let message = '';
+            if (brandType === 'ooredoo') {
+              message = `📥 Ooredoo: Loaded Preset "${presetName}"`;
+            } else if (brandType === 'sga') {
+              message = `📥 SGA: Active preset loaded -> "${presetName}"`;
+            } else if (brandType === 'bnp') {
+              message = `📥 BNP: Brand preset loaded -> "${presetName}"`;
+            }
+
+            addLog(message, brandType);
+          });
+        });
+
+        // Setup dynamic guide format listeners
+        document.querySelectorAll('[data-guide]').forEach(card => {
+          card.addEventListener('click', () => {
+            const guide = card.getAttribute('data-guide');
+            const brandType = card.getAttribute('data-type');
+            
+            let message = '';
+            if (brandType === 'sga') {
+              message = `📥 SGA: Active preset loaded -> "${guide}"`;
+            } else if (brandType === 'bnp') {
+              message = `📥 BNP: Brand preset loaded -> "${guide}"`;
+            }
+
+            addLog(message, brandType);
+          });
+        });
+
+        // BUILD BUTTON TRIGGERS
+        const ooredooBuildBtn = document.getElementById('ooredoo-build');
+        if (ooredooBuildBtn) {
+          ooredooBuildBtn.addEventListener('click', () => {
+            const projNameInput = document.getElementById('ooredoo-project-name');
+            const projName = projNameInput ? projNameInput.value.trim() : '';
+            const language = document.getElementById('ooredoo-language').value;
+
+            if (!projName) {
+              addLog('⚠️ Ooredoo: Enter a project name first!', 'ooredoo');
+              return;
+            }
+
+            addLog(`🚀 Ooredoo: Compiling After Effects Project "${projName}" with language: [${language}]...`, 'ooredoo');
+            setTimeout(() => {
+              addLog(`✅ Ooredoo: Template built successfully for layout LC 65!`, 'ooredoo');
+            }, 1200);
+          });
+        }
+
+        const sgaBuildBtn = document.getElementById('sga-build');
+        if (sgaBuildBtn) {
+          sgaBuildBtn.addEventListener('click', () => {
+            const projNameInput = document.getElementById('sga-project-name');
+            const projName = projNameInput ? projNameInput.value.trim() : '';
+            const language = document.getElementById('sga-language').value;
+
+            if (!projName) {
+              addLog('⚠️ SGA: Please enter a project name!', 'sga');
+              return;
+            }
+
+            addLog(`🚀 SGA: Loading SG composition workspace for project "${projName}" [${language}]...`, 'sga');
+            setTimeout(() => {
+              addLog(`✅ SGA: Red & Black alignment layers successfully generated!`, 'sga');
+            }, 1200);
+          });
+        }
+
+        const bnpBuildBtn = document.getElementById('bnp-build');
+        if (bnpBuildBtn) {
+          bnpBuildBtn.addEventListener('click', () => {
+            const projNameInput = document.getElementById('bnp-project-name');
+            const projName = projNameInput ? projNameInput.value.trim() : '';
+            const language = document.getElementById('bnp-language').value;
+
+            if (!projName) {
+              addLog('⚠️ BNP: Please enter a project name!', 'bnp');
+              return;
+            }
+
+            addLog(`🚀 BNP: Initializing BNP Paribas workspace for project "${projName}" [${language}]...`, 'bnp');
+            setTimeout(() => {
+              addLog(`✅ BNP: Standard Emerald layouts, brandmarks, and grids compiled!`, 'bnp');
+            }, 1200);
+          });
+        }
+
+      })();
+    </script>
+  </body>
+</html>

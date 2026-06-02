@@ -1,0 +1,6 @@
+{
+  "name": "AE Branding Toolkit Hub",
+  "description": "Horizontal interactive multi-brand After Effects panel previewer for Ooredoo, Société Générale, and BNP Paribas El Djazaïr.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
